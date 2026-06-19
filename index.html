@@ -91,6 +91,49 @@ h1{font-size:1.2rem;margin:14px 0 3px;color:#bfdbfe;letter-spacing:-.5px;text-al
 .hint-bar{font-size:.63rem;color:#3d4f6b;margin-top:12px;text-align:center;line-height:1.8}
 .card-num{font-size:.65rem;color:#8b9ab5;margin-top:6px;letter-spacing:.5px}
 
+/* ── 카테고리 정답률 ── */
+.cat-stats{width:100%;max-width:660px;background:#223050;border:1px solid #3d4f6b;border-radius:14px;padding:11px 14px;margin-bottom:10px}
+.cat-stats-title{font-size:.68rem;color:#8b9ab5;margin-bottom:7px;font-weight:600}
+.cat-row{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.cat-name{font-size:.62rem;color:#d1d5db;width:82px;flex-shrink:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cat-bar-wrap{flex:1;height:7px;background:#1a2235;border-radius:99px;overflow:hidden}
+.cat-bar-fill{height:100%;border-radius:99px;transition:width .5s}
+.cat-bar-pct{font-size:.6rem;width:30px;text-align:right;flex-shrink:0}
+
+/* ── 모의시험 ── */
+.exam-wrap{width:100%;max-width:660px}
+.exam-setup-title{font-size:.88rem;font-weight:700;color:#bfdbfe;margin:12px 0 8px}
+.exam-opts{display:flex;flex-direction:column;gap:7px}
+.exam-opt{background:#223050;border:1.5px solid #3d4f6b;border-radius:12px;padding:11px 16px;cursor:pointer;text-align:left;transition:all .2s}
+.exam-opt:hover,.exam-opt:active{border-color:#60a5fa;background:#1e3a5f}
+.exam-opt-name{font-size:.82rem;font-weight:600;color:#f0f4ff}
+.exam-opt-desc{font-size:.62rem;color:#8b9ab5;margin-top:2px}
+.exam-hd{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:660px;margin-bottom:8px}
+.exam-prog{font-size:.72rem;color:#8b9ab5}
+.exam-timer{font-size:.72rem;color:#f97316;font-weight:700;background:#78350f22;border:1px solid #78350f55;padding:2px 10px;border-radius:99px}
+.exam-card{background:#1e2d45;border:1.5px solid #3d5a8a;border-radius:16px;padding:22px 20px;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;width:100%;max-width:660px;margin-bottom:10px;transition:border-color .2s}
+.exam-card.revealed{border-color:#8b5cf6;cursor:default}
+.exam-cat-badge{font-size:.62rem;padding:2px 9px;border-radius:99px;background:#1e3a5f;color:#93c5fd;margin-bottom:8px}
+.exam-q-text{font-size:.95rem;font-weight:700;color:#f0f4ff;line-height:1.65}
+.exam-flip-hint{font-size:.65rem;color:#5a6a85;margin-top:10px}
+.exam-a-wrap{width:100%;text-align:left;margin-top:10px;border-top:1px solid #3d5a8a;padding-top:10px}
+.exam-a-text{font-size:.78rem;line-height:1.75;color:#d1d5db;max-height:160px;overflow-y:auto}
+.exam-a-text strong{color:#93c5fd}
+.exam-score-row{display:flex;gap:9px;width:100%;max-width:660px;margin-bottom:10px}
+.exam-sb{flex:1;padding:11px;border-radius:12px;font-size:.82rem;font-weight:700;cursor:pointer;border:1.5px solid;display:none}
+.exam-sb.show{display:block}
+.exam-sb-g{background:#14532d33;color:#34d399;border-color:#34d39966}
+.exam-sb-r{background:#7f1d1d33;color:#f87171;border-color:#f8717166}
+.exam-result{width:100%;max-width:660px;text-align:center}
+.exam-result-score{font-size:3rem;font-weight:700;margin:8px 0 2px}
+.exam-result-label{font-size:.78rem;color:#8b9ab5;margin-bottom:14px}
+.exam-result-msg{font-size:.9rem;font-weight:700;margin-bottom:14px;padding:10px;border-radius:10px}
+.exam-cat-result{background:#1e2d45;border:1.5px solid #3d5a8a;border-radius:12px;padding:12px 14px;margin-bottom:10px;text-align:left}
+.exam-cat-result-name{font-size:.72rem;font-weight:700;color:#bfdbfe;margin-bottom:6px}
+.exam-wrong-item{background:#223050;border:1px solid #3d4f6b;border-radius:8px;padding:7px 10px;margin-bottom:5px;font-size:.72rem;color:#d1d5db}
+.exam-wrong-q{font-weight:600;color:#fde68a;margin-bottom:2px}
+.exam-restart-btn{background:linear-gradient(135deg,#3b82f6,#6d28d9);color:#fff;border:none;border-radius:12px;padding:11px 28px;font-size:.85rem;font-weight:700;cursor:pointer;margin-top:6px;width:100%}
+
 /* ── 뷰 전환 ── */
 .view-toggle{display:flex;gap:8px;width:100%;max-width:660px;margin-bottom:10px}
 .vt{flex:1;padding:8px;border-radius:10px;border:1.5px solid #3d4f6b;font-size:.76rem;font-weight:600;cursor:pointer;background:#223050;color:#8b9ab5;transition:all .2s}
@@ -137,7 +180,8 @@ h1{font-size:1.2rem;margin:14px 0 3px;color:#bfdbfe;letter-spacing:-.5px;text-al
 
 <div class="view-toggle">
   <button class="vt on" id="vtCard" onclick="switchView('card')">📚 플래시카드</button>
-  <button class="vt" id="vtCheat" onclick="switchView('cheat')">📋 포즈 치트시트</button>
+  <button class="vt" id="vtExam" onclick="switchView('exam')">🎯 모의시험</button>
+  <button class="vt" id="vtCheat" onclick="switchView('cheat')">📋 치트시트</button>
 </div>
 
 <div id="cardView">
@@ -151,6 +195,10 @@ h1{font-size:1.2rem;margin:14px 0 3px;color:#bfdbfe;letter-spacing:-.5px;text-al
   <div class="stat-item"><div class="stat-val sv-r" id="stR">0</div><div class="stat-label">몰랐어요</div></div>
   <div class="stat-item"><div class="stat-val sv-b" id="stRate">-</div><div class="stat-label">정답률</div></div>
   <div class="stat-item"><div class="stat-val sv-p" id="stLeft">-</div><div class="stat-label">미채점</div></div>
+</div>
+<div class="cat-stats" id="catStats" style="display:none">
+  <div class="cat-stats-title">📊 카테고리별 정답률 (채점한 문제 기준)</div>
+  <div id="catChartRows"></div>
 </div>
 
 <div class="card-wrapper" onclick="flipCard()">
@@ -200,6 +248,75 @@ h1{font-size:1.2rem;margin:14px 0 3px;color:#bfdbfe;letter-spacing:-.5px;text-al
 
 <p class="hint-bar">← → 이동 &nbsp;|&nbsp; Space 뒤집기 &nbsp;|&nbsp; 1 알았어요 &nbsp; 2 애매해요 &nbsp; 3 몰랐어요 &nbsp;|&nbsp; 음성인식: Chrome/Safari</p>
 </div><!-- /cardView -->
+
+<!-- ══════ 모의시험 뷰 ══════ -->
+<div id="examView" style="display:none" class="exam-wrap">
+
+  <!-- 설정 화면 -->
+  <div id="examSetup">
+    <div class="exam-setup-title">🎯 모의시험 — 유형 선택</div>
+    <div class="exam-opts">
+      <button class="exam-opt" onclick="startExam('high')">
+        <div class="exam-opt-name">🔥 빈출 집중 (10문제)</div>
+        <div class="exam-opt-desc">시험에 가장 많이 나오는 필수 빈출 문제만 뽑아서 채점</div>
+      </button>
+      <button class="exam-opt" onclick="startExam('doping')">
+        <div class="exam-opt-name">💉 도핑 전체</div>
+        <div class="exam-opt-desc">도핑 카테고리 문제 전체 — 27개</div>
+      </button>
+      <button class="exam-opt" onclick="startExam('emergency')">
+        <div class="exam-opt-name">🚨 응급처치 전체</div>
+        <div class="exam-opt-desc">응급처치 카테고리 문제 전체</div>
+      </button>
+      <button class="exam-opt" onclick="startExam('ifbb')">
+        <div class="exam-opt-name">🏆 IFBB 규정 전체</div>
+        <div class="exam-opt-desc">보디빌딩 대회규정 문제 전체</div>
+      </button>
+      <button class="exam-opt" onclick="startExam('weak')">
+        <div class="exam-opt-name">❌ 취약점 집중</div>
+        <div class="exam-opt-desc">몰랐어요 표시한 문제만 반복 — 가장 효과적</div>
+      </button>
+      <button class="exam-opt" onclick="startExam('all')">
+        <div class="exam-opt-name">📚 전체 랜덤 (15문제)</div>
+        <div class="exam-opt-desc">모든 카테고리에서 랜덤으로 15개</div>
+      </button>
+    </div>
+  </div>
+
+  <!-- 시험 진행 -->
+  <div id="examProgress" style="display:none">
+    <div class="exam-hd">
+      <div class="exam-prog" id="examProgText">1 / 10</div>
+      <div class="exam-timer" id="examTimerEl">0:00</div>
+    </div>
+    <div class="progress-bar" style="margin-bottom:10px"><div class="progress-fill" id="examPFill" style="width:0%"></div></div>
+    <div class="exam-card" id="examCard" onclick="examFlip()">
+      <div class="exam-cat-badge" id="examCatBadge"></div>
+      <div class="exam-q-text" id="examQText"></div>
+      <div class="exam-flip-hint" id="examFlipHint">탭하면 답 보기</div>
+      <div class="exam-a-wrap" id="examAWrap" style="display:none">
+        <div class="exam-a-text" id="examAText"></div>
+      </div>
+    </div>
+    <div class="exam-score-row">
+      <button class="exam-sb exam-sb-g" id="examBtnG" onclick="examScore('g')">✅ 알았어요</button>
+      <button class="exam-sb exam-sb-r" id="examBtnR" onclick="examScore('r')">❌ 몰랐어요</button>
+    </div>
+    <button class="btn btn-p" style="font-size:.72rem;padding:6px 14px" onclick="examAbort()">← 그만하기</button>
+  </div>
+
+  <!-- 결과 화면 -->
+  <div id="examResult" style="display:none">
+    <div class="exam-result">
+      <div class="exam-result-score" id="examScoreDisplay"></div>
+      <div class="exam-result-label" id="examScoreLabel"></div>
+      <div class="exam-result-msg" id="examScoreMsg"></div>
+      <div id="examWrongList"></div>
+      <button class="exam-restart-btn" onclick="examRestart()">🔄 다시 풀기</button>
+    </div>
+  </div>
+
+</div>
 
 <!-- ══════ 치트시트 뷰 ══════ -->
 <div id="cheatView" style="display:none" class="cheat-wrap">
@@ -2617,9 +2734,11 @@ kw:["척추변형","가동범위","속근육","심부근","척추기립근","하
 
 // ─── 상태 ────────────────────────────────────────
 let all = [...CARDS], filtered = [...CARDS], idx = 0, flipped = false;
-const scores = {};
+const SCORE_KEY = 'osp_scores_v1';
+const scores = JSON.parse(localStorage.getItem(SCORE_KEY)||'{}');
 let activeFilter = '전체';
-const cats = ['전체','노인체육론','보디빌딩 대회규정','도핑','응급처치','운동생리학','운동역학·해부학','트레이닝론','스포츠심리학','스포츠 윤리','영양학'];
+const cats = ['전체','🔥 빈출만','노인체육론','보디빌딩 대회규정','도핑','응급처치','운동생리학','운동역학·해부학','트레이닝론','스포츠심리학','스포츠 윤리','영양학'];
+function saveScores(){localStorage.setItem(SCORE_KEY,JSON.stringify(scores));}
 
 // ─── 음성 인식 ────────────────────────────────────
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -2697,9 +2816,11 @@ function filterWrong(){
 }
 function score(type){
   scores[filtered[idx].q]=type;
+  saveScores();
   document.querySelectorAll('.sb').forEach(b=>b.classList.remove('active'));
   document.querySelector(`.sb-${type}`)?.classList.add('active');
   updateStats();
+  updateCatStats();
 }
 function updateStats(){
   const sv=Object.values(scores);
@@ -2714,20 +2835,42 @@ function updateStats(){
   document.getElementById('stRate').textContent=total>0?Math.round(g/total*100)+'%':'-';
   document.getElementById('stLeft').textContent=left;
 }
+function updateCatStats(){
+  const catList=['노인체육론','보디빌딩 대회규정','도핑','응급처치','운동생리학','운동역학·해부학','트레이닝론','스포츠심리학','스포츠 윤리','영양학'];
+  const rows=document.getElementById('catChartRows');
+  if(!rows)return;
+  let hasAny=false;
+  let html='';
+  catList.forEach(cat=>{
+    const cards=all.filter(c=>c.cat===cat);
+    const scored=cards.filter(c=>scores[c.q]);
+    if(!scored.length)return;
+    hasAny=true;
+    const g=scored.filter(c=>scores[c.q]==='g').length;
+    const pct=Math.round(g/scored.length*100);
+    const color=pct>=80?'#34d399':pct>=50?'#fbbf24':'#f87171';
+    html+=`<div class="cat-row"><div class="cat-name" title="${cat}">${cat}</div><div class="cat-bar-wrap"><div class="cat-bar-fill" style="width:${pct}%;background:${color}"></div></div><div class="cat-bar-pct" style="color:${color}">${pct}%</div></div>`;
+  });
+  rows.innerHTML=html;
+  document.getElementById('catStats').style.display=hasAny?'block':'none';
+}
 
 // ─── 탭 ─────────────────────────────────────────
 function initTabs(){
   const bar=document.getElementById('tabs');
   cats.forEach(c=>{
-    const cnt=c==='전체'?all.length:all.filter(x=>x.cat===c).length;
+    let pool;
+    if(c==='전체')pool=all;
+    else if(c==='🔥 빈출만')pool=all.filter(x=>x.freq==='high');
+    else pool=all.filter(x=>x.cat===c);
     const b=document.createElement('button');
-    b.textContent=`${c} (${cnt})`;
+    b.textContent=`${c} (${pool.length})`;
     b.className='tab'+(c===activeFilter?' active':'');
     b.onclick=()=>{
       activeFilter=c;
       document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
       b.classList.add('active');
-      filtered=c==='전체'?[...all]:all.filter(x=>x.cat===c);
+      filtered=[...pool];
       idx=0;render();
     };
     bar.appendChild(b);
@@ -2744,17 +2887,108 @@ document.addEventListener('keydown',e=>{
   if(e.key==='3')score('r');
 });
 
-initTabs();render();
+initTabs();render();updateCatStats();
 
 // ─── 뷰 전환 ────────────────────────────────
 function switchView(mode){
-  const cardView=document.getElementById('cardView');
-  const cheatView=document.getElementById('cheatView');
+  document.getElementById('cardView').style.display=mode==='card'?'':'none';
+  document.getElementById('examView').style.display=mode==='exam'?'':'none';
+  document.getElementById('cheatView').style.display=mode==='cheat'?'':'none';
   document.getElementById('vtCard').classList.toggle('on',mode==='card');
+  document.getElementById('vtExam').classList.toggle('on',mode==='exam');
   document.getElementById('vtCheat').classList.toggle('on',mode==='cheat');
-  cardView.style.display=mode==='card'?'':'none';
-  cheatView.style.display=mode==='cheat'?'':'none';
 }
+
+// ─── 모의시험 ────────────────────────────────
+let examCards=[], examIdx=0, examResults=[], examTimerInt=null, examSec=0, examRevealed=false;
+
+function startExam(type){
+  let pool;
+  if(type==='high') pool=CARDS.filter(c=>c.freq==='high').sort(()=>Math.random()-.5).slice(0,10);
+  else if(type==='doping') pool=CARDS.filter(c=>c.cat==='도핑').sort(()=>Math.random()-.5);
+  else if(type==='emergency') pool=CARDS.filter(c=>c.cat==='응급처치').sort(()=>Math.random()-.5);
+  else if(type==='ifbb') pool=CARDS.filter(c=>c.cat==='보디빌딩 대회규정').sort(()=>Math.random()-.5);
+  else if(type==='weak'){
+    pool=CARDS.filter(c=>scores[c.q]==='r').sort(()=>Math.random()-.5);
+    if(!pool.length){alert('❌ 몰랐어요로 표시한 문제가 없어요.\n플래시카드에서 먼저 채점해 주세요!');return;}
+  }
+  else pool=CARDS.sort(()=>Math.random()-.5).slice(0,15);
+
+  examCards=[...pool];
+  examIdx=0;examResults=[];examSec=0;examRevealed=false;
+  document.getElementById('examSetup').style.display='none';
+  document.getElementById('examResult').style.display='none';
+  document.getElementById('examProgress').style.display='';
+  clearInterval(examTimerInt);
+  examTimerInt=setInterval(()=>{
+    examSec++;
+    const m=Math.floor(examSec/60),s=examSec%60;
+    document.getElementById('examTimerEl').textContent=`${m}:${s<10?'0'+s:s}`;
+  },1000);
+  examRenderQ();
+}
+function examRenderQ(){
+  const c=examCards[examIdx];
+  document.getElementById('examProgText').textContent=`${examIdx+1} / ${examCards.length}`;
+  document.getElementById('examPFill').style.width=((examIdx)/examCards.length*100)+'%';
+  document.getElementById('examCatBadge').textContent=c.cat;
+  document.getElementById('examQText').textContent=c.q;
+  document.getElementById('examFlipHint').style.display='';
+  document.getElementById('examAWrap').style.display='none';
+  document.getElementById('examCard').classList.remove('revealed');
+  document.getElementById('examBtnG').classList.remove('show');
+  document.getElementById('examBtnR').classList.remove('show');
+  examRevealed=false;
+}
+function examFlip(){
+  if(examRevealed)return;
+  examRevealed=true;
+  const c=examCards[examIdx];
+  document.getElementById('examAText').innerHTML=c.a;
+  document.getElementById('examAWrap').style.display='';
+  document.getElementById('examFlipHint').style.display='none';
+  document.getElementById('examCard').classList.add('revealed');
+  document.getElementById('examBtnG').classList.add('show');
+  document.getElementById('examBtnR').classList.add('show');
+}
+function examScore(type){
+  if(!examRevealed)return;
+  const c=examCards[examIdx];
+  examResults.push({card:c,result:type});
+  scores[c.q]=type;saveScores();
+  examIdx++;
+  if(examIdx>=examCards.length){examFinish();return;}
+  examRenderQ();
+}
+function examFinish(){
+  clearInterval(examTimerInt);
+  document.getElementById('examProgress').style.display='none';
+  document.getElementById('examResult').style.display='';
+  const g=examResults.filter(r=>r.result==='g').length;
+  const total=examResults.length;
+  const pct=Math.round(g/total*100);
+  const scoreEl=document.getElementById('examScoreDisplay');
+  scoreEl.textContent=`${g}/${total}`;
+  scoreEl.style.color=pct>=80?'#34d399':pct>=60?'#fbbf24':'#f87171';
+  document.getElementById('examScoreLabel').textContent=`정답률 ${pct}%`;
+  const msg=document.getElementById('examScoreMsg');
+  if(pct>=80){msg.textContent='🎉 훌륭해요! 이 페이스로 계속!';msg.style.background='#14532d33';msg.style.color='#34d399';}
+  else if(pct>=60){msg.textContent='💪 거의 다 왔어요! 틀린 문제 집중 반복!';msg.style.background='#78350f33';msg.style.color='#fbbf24';}
+  else{msg.textContent='🔄 취약점 집중 모드로 반복 학습하세요!';msg.style.background='#7f1d1d33';msg.style.color='#f87171';}
+  // 틀린 문제 목록
+  const wrongs=examResults.filter(r=>r.result==='r');
+  let html='';
+  if(wrongs.length){
+    html=`<div style="font-size:.72rem;color:#8b9ab5;margin-bottom:7px;text-align:left">❌ 틀린 문제 (${wrongs.length}개)</div>`;
+    wrongs.forEach(w=>{
+      html+=`<div class="exam-wrong-item"><div class="exam-wrong-q">${w.card.q}</div><div style="font-size:.62rem;color:#c4b5fd">${w.card.cat}</div></div>`;
+    });
+  }
+  document.getElementById('examWrongList').innerHTML=html;
+  updateCatStats();updateStats();
+}
+function examAbort(){clearInterval(examTimerInt);document.getElementById('examProgress').style.display='none';document.getElementById('examSetup').style.display='';}
+function examRestart(){document.getElementById('examResult').style.display='none';document.getElementById('examSetup').style.display='';}
 
 // ─── 치트시트 카테고리 전환 ──────────────────
 function showCsCat(id,btn){
